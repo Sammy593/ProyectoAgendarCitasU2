@@ -1,0 +1,92 @@
+﻿@model AgendarCitasU2.Models.ViewModels.CitaViewModel
+@{
+    ViewBag.Title = "Agendar Cita";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Nuevo", "Citas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(d => d.medicoId)
+                @Html.DropDownListFor(d => d.medicoId, ViewBag.medicosItems as List<SelectListItem>,
+                                 " -- Seleccionar Medico --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.medicoId, null, new { @class = "red" })
+                <br />
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.pacienteId)
+                @Html.DropDownListFor(d => d.pacienteId, ViewBag.pacientesItems as List<SelectListItem>,
+                " -- Seleccionar Paciente --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.pacienteId, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.especialidad) <br />
+                @Html.DropDownListFor(d => d.especialidad, new List<SelectListItem>(),
+                    " -- Seleccionar Especialidad --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.especialidad, null, new { @class = "red" })
+                <br />
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.fechaAtencion)
+                <br />
+                @Html.EditorFor(d => d.fechaAtencion, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.fechaAtencion, null, new { @class = "red" })
+                @Html.ValidationMessageFor(d => d.fechaAtencion, null, new { @class = "red" })
+            </div>
+            <div>
+                @Html.LabelFor(d => d.inicioAtencion)
+                <br />
+                @Html.EditorFor(d => d.inicioAtencion, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.inicioAtencion, null, new { @class = "red" })
+                @Html.ValidationMessageFor(d => d.inicioAtencion, null, new { @class = "red" })
+            </div>
+            <div>
+                @Html.LabelFor(d => d.finAtencion)
+                <br />
+                @Html.EditorFor(d => d.finAtencion, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.finAtencion, null, new { @class = "red" })
+                @Html.ValidationMessageFor(d => d.finAtencion, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.observaciones)
+                @Html.TextAreaFor(d => d.observaciones, new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.observaciones, null, new { @class = "red" })
+            </div> 
+            <div>
+                <br />
+                <input type="submit" value="GUARDAR" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+
+
+}
+
+@section scripts {
+
+    <script>
+        $(document).ready(function () {
+            $("#medicoId").change(function () {
+                $.get("/Citas/getEspecialidadesList", { medicoId: $("#medicoId").val() }, function (data) {
+                    // VACIAMOS EL DropDownList
+                    $("#especialidad").empty();
+                    // AÑADIMOS UN NUEVO label CON EL NOMBRE DEL ELEMENTO SELECCIONADO
+                    $("#especialidad").append("<option value> -- Seleccionar Especialidad de " + $("#medicoId option:selected").text() + " --</option>")
+                    // CONSTRUIMOS EL DropDownList A PARTIR DEL RESULTADO Json (data)
+                    $.each(data, function (index, row) {
+                        $("#especialidad").append("<option value='" + row.ID + "'>" + row.NOMBRE + "</option>")
+                    });
+                });
+            });
+        });
+    </script>
+
+}

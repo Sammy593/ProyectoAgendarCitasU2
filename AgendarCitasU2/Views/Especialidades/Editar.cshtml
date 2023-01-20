@@ -1,0 +1,67 @@
+﻿@model AgendarCitasU2.Models.ViewModels.EspecialidadesViewModel
+@{
+    ViewBag.Title = "Editar una Especialidad";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Editar", "Especialidades", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+
+            @Html.HiddenFor(d => d.ID)
+
+            <div>
+                @Html.LabelFor(d => d.NOMBRE)
+                @Html.TextBoxFor(d => d.NOMBRE, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.NOMBRE, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.DESCRIPCION)
+                @Html.TextBoxFor(d => d.DESCRIPCION, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.DESCRIPCION, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.FECHAREGISTRO)<br />
+                @Html.EditorFor(d => d.FECHAREGISTRO, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.FECHAREGISTRO, null, new { @class = "red" })
+                <br />
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.FECHAMODIFICACION) <br />
+                @Html.EditorFor(d => d.FECHAMODIFICACION, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.FECHAMODIFICACION, null, new { @class = "red" })
+                <br />
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.USUARIOREGISTRO) <br />
+                @Html.EditorFor(d => d.USUARIOREGISTRO, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.USUARIOREGISTRO, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.USUARIOMODIFICACION) <br />
+                @Html.EditorFor(d => d.USUARIOMODIFICACION, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.USUARIOMODIFICACION, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.ACTIVO) <br />
+                @Html.EditorFor(d => d.ACTIVO, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.ACTIVO, null, new { @class = "red" })
+            </div>
+
+            <div>
+                <br />
+                <input type="submit" value="ACTUALIZAR" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+}
+

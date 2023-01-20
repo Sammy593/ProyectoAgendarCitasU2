@@ -1,0 +1,88 @@
+﻿@model AgendarCitasU2.Models.ViewModels.PacienteFullViewModel
+@{
+    ViewBag.Title = "Actualizar datos de Paciente";
+}
+
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+        form row {
+            width: 40%;
+        }
+</style>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>User Profile</h3>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    @using (Html.BeginForm("Editar", "Pacientes", FormMethod.Post))
+                    {
+                        @Html.HiddenFor(d => d.idP);
+                        @Html.HiddenFor(d => d.fModP);
+                        @Html.HiddenFor(d => d.fRegP);
+                        @Html.HiddenFor(d => d.userRegP);
+                        @Html.HiddenFor(d => d.userModP);
+                        @Html.HiddenFor(d => d.activoP);
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(d => d.nombresP)
+                                @Html.TextBoxFor(d => d.nombresP, "", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(d => d.nombresP, null, new { @class = "red" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(d => d.apellidosP)
+                                @Html.TextBoxFor(d => d.apellidosP, "", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(d => d.apellidosP, null, new { @class = "red" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(d => d.dniP)
+                                @Html.TextBoxFor(d => d.dniP, "", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(d => d.dniP, null, new { @class = "red" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(d => d.direccionP)
+                                @Html.TextBoxFor(d => d.direccionP, "", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(d => d.direccionP, null, new { @class = "red" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(d => d.telefonoP)
+                                @Html.TextBoxFor(d => d.telefonoP, "", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(d => d.telefonoP, null, new { @class = "red" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(d => d.sexoP)
+                                @Html.TextBoxFor(d => d.sexoP, "", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(d => d.sexoP, null, new { @class = "red" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(d => d.fNacP)
+                                @Html.EditorFor(d => d.fNacP, "", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(d => d.fNacP, null, new { @class = "red" })
+                            </div>
+                        </div>
+                        <div>
+                            <br />
+                            <input type="submit" value="Editar" class="btn btn-primary" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

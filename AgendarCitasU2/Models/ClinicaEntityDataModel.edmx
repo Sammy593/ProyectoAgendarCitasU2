@@ -1,0 +1,609 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CLINICAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CITAS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MEDICOID" Type="int" Nullable="false" />
+          <Property Name="PACIENTEID" Type="int" Nullable="false" />
+          <Property Name="FECHAATENCION" Type="date" Nullable="false" />
+          <Property Name="INICIOATENCION" Type="time" Precision="7" Nullable="false" />
+          <Property Name="FINATENCION" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="OBSERVACIONES" Type="varchar" MaxLength="500" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
+          <Property Name="FECHAREGISTRO" Type="datetime" Nullable="false" />
+          <Property Name="USUARIOREGISTRO" Type="varchar" MaxLength="25" />
+          <Property Name="FECHAMODIFICACION" Type="datetime" />
+          <Property Name="USUARIOMODIFICACION" Type="varchar" MaxLength="25" />
+          <Property Name="ESPECIALIDAD" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ESPECIALIDADES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FECHAREGISTRO" Type="datetime" />
+          <Property Name="FECHAMODIFICACION" Type="datetime" />
+          <Property Name="USUARIOREGISTRO" Type="varchar" MaxLength="25" />
+          <Property Name="USUARIOMODIFICACION" Type="varchar" MaxLength="25" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HORARIOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MEDICOID" Type="int" Nullable="false" />
+          <Property Name="FECHAATENCION" Type="date" Nullable="false" />
+          <Property Name="INICIOATENCION" Type="time" Precision="7" Nullable="false" />
+          <Property Name="FINATENCION" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
+          <Property Name="FECHAREGISTRO" Type="datetime" Nullable="false" />
+          <Property Name="USUARIOREGISTRO" Type="varchar" MaxLength="25" />
+          <Property Name="FECHAMODIFICACION" Type="datetime" />
+          <Property Name="USUARIOMODIFICACION" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="MEDICOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="DNI" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CORREO" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="25" />
+          <Property Name="SEXO" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="NUMCOLEGIATURA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FECHANACIMIENTO" Type="date" Nullable="false" />
+          <Property Name="FECHAREGISTRO" Type="datetime" />
+          <Property Name="FECHAMODIFICACION" Type="datetime" />
+          <Property Name="USUARIOREGISTRO" Type="varchar" MaxLength="25" />
+          <Property Name="USUARIOMODIFICACION" Type="varchar" MaxLength="25" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MEDICOS_ESPECIALIDADES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MEDICOID" Type="int" Nullable="false" />
+          <Property Name="ESPECIALIDADID" Type="int" Nullable="false" />
+          <Property Name="FECHAREGISTRO" Type="datetime" />
+          <Property Name="FECHAMODIFICACION" Type="datetime" />
+          <Property Name="USUARIOREGISTRO" Type="varchar" MaxLength="25" />
+          <Property Name="USUARIOMODIFICACION" Type="varchar" MaxLength="25" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PACIENTES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="DNI" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="SEXO" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="FECHANACIMIENTO" Type="date" Nullable="false" />
+          <Property Name="FECHAREGISTRO" Type="datetime" />
+          <Property Name="FECHAMODIFICACION" Type="datetime" />
+          <Property Name="USUARIOREGISTRO" Type="varchar" MaxLength="25" />
+          <Property Name="USUARIOMODIFICACION" Type="varchar" MaxLength="25" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="ISADMIN" Type="bit" />
+          <Property Name="ISACTIVE" Type="bit" />
+        </EntityType>
+        <Association Name="FK_ESPECIALIDADES">
+          <End Role="ESPECIALIDADES" Type="Self.ESPECIALIDADES" Multiplicity="1" />
+          <End Role="MEDICOS_ESPECIALIDADES" Type="Self.MEDICOS_ESPECIALIDADES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESPECIALIDADES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MEDICOS_ESPECIALIDADES">
+              <PropertyRef Name="ESPECIALIDADID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICOS">
+          <End Role="MEDICOS" Type="Self.MEDICOS" Multiplicity="1" />
+          <End Role="MEDICOS_ESPECIALIDADES" Type="Self.MEDICOS_ESPECIALIDADES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MEDICOS_ESPECIALIDADES">
+              <PropertyRef Name="MEDICOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICOS_CITAS">
+          <End Role="MEDICOS" Type="Self.MEDICOS" Multiplicity="1" />
+          <End Role="CITAS" Type="Self.CITAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CITAS">
+              <PropertyRef Name="MEDICOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICOS_HORARIOS">
+          <End Role="MEDICOS" Type="Self.MEDICOS" Multiplicity="1" />
+          <End Role="HORARIOS" Type="Self.HORARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HORARIOS">
+              <PropertyRef Name="MEDICOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTES_CITAS">
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="1" />
+          <End Role="CITAS" Type="Self.CITAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CITAS">
+              <PropertyRef Name="PACIENTEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CLINICAModelStoreContainer">
+          <EntitySet Name="CITAS" EntityType="Self.CITAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ESPECIALIDADES" EntityType="Self.ESPECIALIDADES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HORARIOS" EntityType="Self.HORARIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEDICOS" EntityType="Self.MEDICOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEDICOS_ESPECIALIDADES" EntityType="Self.MEDICOS_ESPECIALIDADES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PACIENTES" EntityType="Self.PACIENTES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ESPECIALIDADES" Association="Self.FK_ESPECIALIDADES">
+            <End Role="ESPECIALIDADES" EntitySet="ESPECIALIDADES" />
+            <End Role="MEDICOS_ESPECIALIDADES" EntitySet="MEDICOS_ESPECIALIDADES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICOS" Association="Self.FK_MEDICOS">
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+            <End Role="MEDICOS_ESPECIALIDADES" EntitySet="MEDICOS_ESPECIALIDADES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICOS_CITAS" Association="Self.FK_MEDICOS_CITAS">
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+            <End Role="CITAS" EntitySet="CITAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICOS_HORARIOS" Association="Self.FK_MEDICOS_HORARIOS">
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+            <End Role="HORARIOS" EntitySet="HORARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTES_CITAS" Association="Self.FK_PACIENTES_CITAS">
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+            <End Role="CITAS" EntitySet="CITAS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CLINICAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CLINICAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CITAS" EntityType="CLINICAModel.CITAS" />
+          <EntitySet Name="ESPECIALIDADES" EntityType="CLINICAModel.ESPECIALIDADES" />
+          <EntitySet Name="HORARIOS" EntityType="CLINICAModel.HORARIOS" />
+          <EntitySet Name="MEDICOS" EntityType="CLINICAModel.MEDICOS" />
+          <EntitySet Name="MEDICOS_ESPECIALIDADES" EntityType="CLINICAModel.MEDICOS_ESPECIALIDADES" />
+          <EntitySet Name="PACIENTES" EntityType="CLINICAModel.PACIENTES" />
+          <EntitySet Name="USUARIOS" EntityType="CLINICAModel.USUARIOS" />
+          <AssociationSet Name="FK_MEDICOS_CITAS" Association="CLINICAModel.FK_MEDICOS_CITAS">
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+            <End Role="CITAS" EntitySet="CITAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTES_CITAS" Association="CLINICAModel.FK_PACIENTES_CITAS">
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+            <End Role="CITAS" EntitySet="CITAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ESPECIALIDADES" Association="CLINICAModel.FK_ESPECIALIDADES">
+            <End Role="ESPECIALIDADES" EntitySet="ESPECIALIDADES" />
+            <End Role="MEDICOS_ESPECIALIDADES" EntitySet="MEDICOS_ESPECIALIDADES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICOS_HORARIOS" Association="CLINICAModel.FK_MEDICOS_HORARIOS">
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+            <End Role="HORARIOS" EntitySet="HORARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICOS" Association="CLINICAModel.FK_MEDICOS">
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+            <End Role="MEDICOS_ESPECIALIDADES" EntitySet="MEDICOS_ESPECIALIDADES" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CITAS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MEDICOID" Type="Int32" Nullable="false" />
+          <Property Name="PACIENTEID" Type="Int32" Nullable="false" />
+          <Property Name="FECHAATENCION" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="INICIOATENCION" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="FINATENCION" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="OBSERVACIONES" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+          <Property Name="FECHAREGISTRO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="USUARIOREGISTRO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FECHAMODIFICACION" Type="DateTime" Precision="3" />
+          <Property Name="USUARIOMODIFICACION" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MEDICOS" Relationship="Self.FK_MEDICOS_CITAS" FromRole="CITAS" ToRole="MEDICOS" />
+          <NavigationProperty Name="PACIENTES" Relationship="Self.FK_PACIENTES_CITAS" FromRole="CITAS" ToRole="PACIENTES" />
+          <Property Name="ESPECIALIDAD" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ESPECIALIDADES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FECHAREGISTRO" Type="DateTime" Precision="3" />
+          <Property Name="FECHAMODIFICACION" Type="DateTime" Precision="3" />
+          <Property Name="USUARIOREGISTRO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIOMODIFICACION" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MEDICOS_ESPECIALIDADES" Relationship="CLINICAModel.FK_ESPECIALIDADES" FromRole="ESPECIALIDADES" ToRole="MEDICOS_ESPECIALIDADES" />
+        </EntityType>
+        <EntityType Name="HORARIOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MEDICOID" Type="Int32" Nullable="false" />
+          <Property Name="FECHAATENCION" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="INICIOATENCION" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="FINATENCION" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+          <Property Name="FECHAREGISTRO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="USUARIOREGISTRO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FECHAMODIFICACION" Type="DateTime" Precision="3" />
+          <Property Name="USUARIOMODIFICACION" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MEDICOS" Relationship="CLINICAModel.FK_MEDICOS_HORARIOS" FromRole="HORARIOS" ToRole="MEDICOS" />
+        </EntityType>
+        <EntityType Name="MEDICOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRES" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DNI" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CORREO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TELEFONO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SEXO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NUMCOLEGIATURA" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FECHANACIMIENTO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FECHAREGISTRO" Type="DateTime" Precision="3" />
+          <Property Name="FECHAMODIFICACION" Type="DateTime" Precision="3" />
+          <Property Name="USUARIOREGISTRO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIOMODIFICACION" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CITAS" Relationship="CLINICAModel.FK_MEDICOS_CITAS" FromRole="MEDICOS" ToRole="CITAS" />
+          <NavigationProperty Name="HORARIOS" Relationship="CLINICAModel.FK_MEDICOS_HORARIOS" FromRole="MEDICOS" ToRole="HORARIOS" />
+          <NavigationProperty Name="MEDICOS_ESPECIALIDADES" Relationship="CLINICAModel.FK_MEDICOS" FromRole="MEDICOS" ToRole="MEDICOS_ESPECIALIDADES" />
+        </EntityType>
+        <EntityType Name="MEDICOS_ESPECIALIDADES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MEDICOID" Type="Int32" Nullable="false" />
+          <Property Name="ESPECIALIDADID" Type="Int32" Nullable="false" />
+          <Property Name="FECHAREGISTRO" Type="DateTime" Precision="3" />
+          <Property Name="FECHAMODIFICACION" Type="DateTime" Precision="3" />
+          <Property Name="USUARIOREGISTRO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIOMODIFICACION" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ESPECIALIDADES" Relationship="CLINICAModel.FK_ESPECIALIDADES" FromRole="MEDICOS_ESPECIALIDADES" ToRole="ESPECIALIDADES" />
+          <NavigationProperty Name="MEDICOS" Relationship="CLINICAModel.FK_MEDICOS" FromRole="MEDICOS_ESPECIALIDADES" ToRole="MEDICOS" />
+        </EntityType>
+        <EntityType Name="PACIENTES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRES" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DNI" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SEXO" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FECHANACIMIENTO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FECHAREGISTRO" Type="DateTime" Precision="3" />
+          <Property Name="FECHAMODIFICACION" Type="DateTime" Precision="3" />
+          <Property Name="USUARIOREGISTRO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIOMODIFICACION" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CITAS" Relationship="CLINICAModel.FK_PACIENTES_CITAS" FromRole="PACIENTES" ToRole="CITAS" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="ISADMIN" Type="Boolean" />
+          <Property Name="ISACTIVE" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_MEDICOS_CITAS">
+          <End Type="CLINICAModel.MEDICOS" Role="MEDICOS" Multiplicity="1" />
+          <End Type="CLINICAModel.CITAS" Role="CITAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CITAS">
+              <PropertyRef Name="MEDICOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACIENTES_CITAS">
+          <End Type="CLINICAModel.PACIENTES" Role="PACIENTES" Multiplicity="1" />
+          <End Type="CLINICAModel.CITAS" Role="CITAS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACIENTES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CITAS">
+              <PropertyRef Name="PACIENTEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ESPECIALIDADES">
+          <End Type="CLINICAModel.ESPECIALIDADES" Role="ESPECIALIDADES" Multiplicity="1" />
+          <End Type="CLINICAModel.MEDICOS_ESPECIALIDADES" Role="MEDICOS_ESPECIALIDADES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ESPECIALIDADES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MEDICOS_ESPECIALIDADES">
+              <PropertyRef Name="ESPECIALIDADID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICOS_HORARIOS">
+          <End Type="CLINICAModel.MEDICOS" Role="MEDICOS" Multiplicity="1" />
+          <End Type="CLINICAModel.HORARIOS" Role="HORARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HORARIOS">
+              <PropertyRef Name="MEDICOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICOS">
+          <End Type="CLINICAModel.MEDICOS" Role="MEDICOS" Multiplicity="1" />
+          <End Type="CLINICAModel.MEDICOS_ESPECIALIDADES" Role="MEDICOS_ESPECIALIDADES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MEDICOS_ESPECIALIDADES">
+              <PropertyRef Name="MEDICOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+        <EntityContainer Name="CLINICAEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CITAS" EntityType="Self.CITAS" />
+          <EntitySet Name="ESPECIALIDADES" EntityType="Self.ESPECIALIDADES" />
+          <EntitySet Name="HORARIOS" EntityType="Self.HORARIOS" />
+          <EntitySet Name="MEDICOS" EntityType="Self.MEDICOS" />
+          <EntitySet Name="MEDICOS_ESPECIALIDADES" EntityType="Self.MEDICOS_ESPECIALIDADES" />
+          <EntitySet Name="PACIENTES" EntityType="Self.PACIENTES" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+          <AssociationSet Name="FK_MEDICOS_CITAS" Association="Self.FK_MEDICOS_CITAS">
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+            <End Role="CITAS" EntitySet="CITAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACIENTES_CITAS" Association="Self.FK_PACIENTES_CITAS">
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+            <End Role="CITAS" EntitySet="CITAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ESPECIALIDADES" Association="Self.FK_ESPECIALIDADES">
+            <End Role="ESPECIALIDADES" EntitySet="ESPECIALIDADES" />
+            <End Role="MEDICOS_ESPECIALIDADES" EntitySet="MEDICOS_ESPECIALIDADES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICOS_HORARIOS" Association="Self.FK_MEDICOS_HORARIOS">
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+            <End Role="HORARIOS" EntitySet="HORARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICOS" Association="Self.FK_MEDICOS">
+            <End Role="MEDICOS" EntitySet="MEDICOS" />
+            <End Role="MEDICOS_ESPECIALIDADES" EntitySet="MEDICOS_ESPECIALIDADES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CLINICAModelStoreContainer" CdmEntityContainer="CLINICAEntities1">
+          <EntitySetMapping Name="CITAS">
+            <EntityTypeMapping TypeName="CLINICAModel.CITAS">
+              <MappingFragment StoreEntitySet="CITAS">
+                <ScalarProperty Name="ESPECIALIDAD" ColumnName="ESPECIALIDAD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MEDICOID" ColumnName="MEDICOID" />
+                <ScalarProperty Name="PACIENTEID" ColumnName="PACIENTEID" />
+                <ScalarProperty Name="FECHAATENCION" ColumnName="FECHAATENCION" />
+                <ScalarProperty Name="INICIOATENCION" ColumnName="INICIOATENCION" />
+                <ScalarProperty Name="FINATENCION" ColumnName="FINATENCION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="FECHAREGISTRO" ColumnName="FECHAREGISTRO" />
+                <ScalarProperty Name="USUARIOREGISTRO" ColumnName="USUARIOREGISTRO" />
+                <ScalarProperty Name="FECHAMODIFICACION" ColumnName="FECHAMODIFICACION" />
+                <ScalarProperty Name="USUARIOMODIFICACION" ColumnName="USUARIOMODIFICACION" />
+                <ScalarProperty Name="FECHAMODIFICACION" ColumnName="FECHAMODIFICACION" />
+                <ScalarProperty Name="USUARIOREGISTRO" ColumnName="USUARIOREGISTRO" />
+                <ScalarProperty Name="FECHAREGISTRO" ColumnName="FECHAREGISTRO" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="FINATENCION" ColumnName="FINATENCION" />
+                <ScalarProperty Name="INICIOATENCION" ColumnName="INICIOATENCION" />
+                <ScalarProperty Name="FECHAATENCION" ColumnName="FECHAATENCION" />
+                <ScalarProperty Name="PACIENTEID" ColumnName="PACIENTEID" />
+                <ScalarProperty Name="MEDICOID" ColumnName="MEDICOID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ESPECIALIDADES">
+            <EntityTypeMapping TypeName="CLINICAModel.ESPECIALIDADES">
+              <MappingFragment StoreEntitySet="ESPECIALIDADES">
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="USUARIOMODIFICACION" ColumnName="USUARIOMODIFICACION" />
+                <ScalarProperty Name="USUARIOREGISTRO" ColumnName="USUARIOREGISTRO" />
+                <ScalarProperty Name="FECHAMODIFICACION" ColumnName="FECHAMODIFICACION" />
+                <ScalarProperty Name="FECHAREGISTRO" ColumnName="FECHAREGISTRO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HORARIOS">
+            <EntityTypeMapping TypeName="CLINICAModel.HORARIOS">
+              <MappingFragment StoreEntitySet="HORARIOS">
+                <ScalarProperty Name="USUARIOMODIFICACION" ColumnName="USUARIOMODIFICACION" />
+                <ScalarProperty Name="FECHAMODIFICACION" ColumnName="FECHAMODIFICACION" />
+                <ScalarProperty Name="USUARIOREGISTRO" ColumnName="USUARIOREGISTRO" />
+                <ScalarProperty Name="FECHAREGISTRO" ColumnName="FECHAREGISTRO" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="FINATENCION" ColumnName="FINATENCION" />
+                <ScalarProperty Name="INICIOATENCION" ColumnName="INICIOATENCION" />
+                <ScalarProperty Name="FECHAATENCION" ColumnName="FECHAATENCION" />
+                <ScalarProperty Name="MEDICOID" ColumnName="MEDICOID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEDICOS">
+            <EntityTypeMapping TypeName="CLINICAModel.MEDICOS">
+              <MappingFragment StoreEntitySet="MEDICOS">
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="USUARIOMODIFICACION" ColumnName="USUARIOMODIFICACION" />
+                <ScalarProperty Name="USUARIOREGISTRO" ColumnName="USUARIOREGISTRO" />
+                <ScalarProperty Name="FECHAMODIFICACION" ColumnName="FECHAMODIFICACION" />
+                <ScalarProperty Name="FECHAREGISTRO" ColumnName="FECHAREGISTRO" />
+                <ScalarProperty Name="FECHANACIMIENTO" ColumnName="FECHANACIMIENTO" />
+                <ScalarProperty Name="NUMCOLEGIATURA" ColumnName="NUMCOLEGIATURA" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEDICOS_ESPECIALIDADES">
+            <EntityTypeMapping TypeName="CLINICAModel.MEDICOS_ESPECIALIDADES">
+              <MappingFragment StoreEntitySet="MEDICOS_ESPECIALIDADES">
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="USUARIOMODIFICACION" ColumnName="USUARIOMODIFICACION" />
+                <ScalarProperty Name="USUARIOREGISTRO" ColumnName="USUARIOREGISTRO" />
+                <ScalarProperty Name="FECHAMODIFICACION" ColumnName="FECHAMODIFICACION" />
+                <ScalarProperty Name="FECHAREGISTRO" ColumnName="FECHAREGISTRO" />
+                <ScalarProperty Name="ESPECIALIDADID" ColumnName="ESPECIALIDADID" />
+                <ScalarProperty Name="MEDICOID" ColumnName="MEDICOID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACIENTES">
+            <EntityTypeMapping TypeName="CLINICAModel.PACIENTES">
+              <MappingFragment StoreEntitySet="PACIENTES">
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+                <ScalarProperty Name="USUARIOMODIFICACION" ColumnName="USUARIOMODIFICACION" />
+                <ScalarProperty Name="USUARIOREGISTRO" ColumnName="USUARIOREGISTRO" />
+                <ScalarProperty Name="FECHAMODIFICACION" ColumnName="FECHAMODIFICACION" />
+                <ScalarProperty Name="FECHAREGISTRO" ColumnName="FECHAREGISTRO" />
+                <ScalarProperty Name="FECHANACIMIENTO" ColumnName="FECHANACIMIENTO" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="CLINICAModel.USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+                <ScalarProperty Name="ISADMIN" ColumnName="ISADMIN" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

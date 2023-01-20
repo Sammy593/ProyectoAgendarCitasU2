@@ -1,0 +1,64 @@
+﻿@model AgendarCitasU2.Models.ViewModels.PacienteFullViewModel
+@{
+    ViewBag.Title = "Nuevo Paciente";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Nuevo", "Pacientes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(d => d.nombresP)
+                @Html.TextBoxFor(d => d.nombresP, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.nombresP, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.apellidosP)
+                @Html.TextBoxFor(d => d.apellidosP, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.apellidosP, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.dniP) <br />
+                @Html.TextBoxFor(d => d.dniP, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.dniP, null, new { @class = "red" })
+                <br />
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.direccionP) <br />
+                @Html.TextBoxFor(d => d.direccionP, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.direccionP, null, new { @class = "red" })
+                <br />
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.telefonoP)
+                @Html.TextBoxFor(d => d.telefonoP, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.telefonoP, null, new { @class = "red" })
+            </div>
+
+            <div>
+                @Html.LabelFor(d => d.sexoP)
+                @Html.TextBoxFor(d => d.sexoP, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.sexoP, null, new { @class = "red" })
+            </div>
+            <div>
+                @Html.LabelFor(d => d.fNacP)
+                <br />
+                @Html.EditorFor(d => d.fNacP, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.fNacP, null, new { @class = "red" })
+            </div>
+            <div>
+                <br />
+                <input type="submit" value="GUARDAR" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+
+
+}

@@ -1,0 +1,71 @@
+﻿@* Una vista recibe una modelo con la palabra model*@
+@model List<AgendarCitasU2.Models.TableViewModels.UserTableViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>USUARIOS</h2>
+
+@*<div>
+    <input type="button" class="btn btn-success" onclick="document.location.href='@Url.Content("~/User/Add")'" value="Agregar nuevo usuario" />
+</div>*@
+<div class="row " style="text-align:right; padding:10px;">
+    <a href="~/User/Nuevo" class="btn btn-primary"><i class="fa fa-book fa-fw" aria-hidden="true"></i> Nuevo</a>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <table id="user" class="table table-striped table-bordered">
+            <tr>
+                <th>ID</th>
+                <th>USUARIO</th>
+                <th>ADMINISTRADOR</th>
+                <th>ACTIVO</th>
+                <th>ACCIÓN</th>
+            </tr>
+
+            @foreach (var oElement in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => oElement.ID)</td>
+                    <td>@Html.DisplayFor(modelItem => oElement.USERNAME)</td>
+                    <td>@Html.DisplayFor(modelItem => oElement.ISADMIN)</td>
+                    <td>@Html.DisplayFor(modelItem => oElement.ISACTIVE)</td>
+                    <td style="text-align:left; ">
+                        <a href="@Url.Action("Editar","User",new {id = @oElement.ID})" class="btn btn-success"><i class="fa fa-pencil fa-fw"></i> Editar</a>
+                        <a href="@Url.Action("Eliminar","User",new {id = @oElement.ID})" class="btn btn-danger" onclick="return btnEliminar()"><i class="fa fa-trash-o fa-fw"></i> Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</div>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#user').DataTable();
+        });
+
+        //funcion eliminar btn
+        function btnEliminar() {
+            var confirmacion = confirm("¿Desea eliminar el usuario?");
+            if (confirmacion == true) {
+                alert("Usuario Eliminado con éxito !!!");
+                return true;
+
+            } else {
+                alert("Operación Cancelada :) !!!");
+                return false;
+            }
+
+
+
+        }
+
+    </script>
+}

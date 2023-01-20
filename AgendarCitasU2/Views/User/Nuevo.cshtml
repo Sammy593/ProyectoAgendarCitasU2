@@ -1,0 +1,63 @@
+﻿
+@model AgendarCitasU2.Models.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Agregar un usuario";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@* Helpers... primero va el nombre del método (Add), segundo el controller (User) y tercero el método por el cual se va a ir*@
+@using (Html.BeginForm("Nuevo", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    // Atributo de seguridad, para no recibir peticiones de afuera
+    @Html.AntiForgeryToken()
+
+    // En caso de error muestra el mensaje
+    @Html.ValidationMessage("error", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(d => d.USERNAME)
+                @Html.TextBoxFor(d => d.USERNAME, "", new { @class = "form-control" })
+                @Html.ValidationMessage("USERNAME", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(d => d.PASSWORD)
+                @Html.PasswordFor(d => d.PASSWORD, new { @class = "form-control" })
+                @Html.ValidationMessage("PASSWORD", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(d => d.CONFIRMPASSWORD)
+                @Html.PasswordFor(d => d.CONFIRMPASSWORD, new { @class = "form-control" })
+                @Html.ValidationMessage("CONFIRMPASSWORD", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(d => d.ISADMIN) <br />
+                @Html.DropDownListFor(d => d.ISADMIN, new List<SelectListItem>() { new SelectListItem() {
+                        Text = "Administrador", Value="True"}, new SelectListItem() { Text="Empleado", Value="False"} }, "Select", new { @id = "SelectBox" })
+                @Html.ValidationMessageFor(d => d.ISADMIN, null, new { @class = "red" })
+            </div>
+            <br />
+            <div>
+                @Html.LabelFor(d => d.ISACTIVE) <br />
+                @Html.DropDownListFor(d => d.ISACTIVE, new List<SelectListItem>() { new SelectListItem() {
+                        Text = "Activo", Value="True"}, new SelectListItem() { Text="Inactivo", Value="False"} }, "Select", new { @id = "SelectBox" })
+                @Html.ValidationMessageFor(d => d.ISACTIVE, null, new { @class = "red" })
+            </div>
+            <br />
+            <div>
+                <br />
+                <input type="submit" value="GUARDAR" class="btn btn-success" />
+                <input type="button" class="btn btn-danger" onclick="document.location.href='@Url.Content("~/User/Index")'" value="CANCELAR" />
+            </div>
+        </div>
+    </div>
+
+
+
+}
+

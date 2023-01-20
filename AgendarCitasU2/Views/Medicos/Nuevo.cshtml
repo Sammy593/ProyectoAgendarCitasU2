@@ -1,0 +1,80 @@
+﻿@model AgendarCitasU2.Models.ViewModels.MedicosViewModel
+@{
+    ViewBag.Title = "Nuevo Medico";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("Nuevo", "Medicos", FormMethod.Post))
+{
+    <div class="row">
+
+        <div class="col-md-12">
+
+            @Html.LabelFor(d => d.NOMBRES)
+            @Html.TextBoxFor(d => d.NOMBRES, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.NOMBRES, null, new { @class = "red" })
+            @Html.LabelFor(d => d.APELLIDOS)
+            @Html.TextBoxFor(d => d.APELLIDOS, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.APELLIDOS, null, new { @class = "red" })
+            @Html.LabelFor(d => d.DNI)
+            @Html.TextBoxFor(d => d.DNI, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.DNI, null, new { @class = "red" })
+            @Html.LabelFor(d => d.DIRECCION)
+            @Html.TextBoxFor(d => d.DIRECCION, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.DIRECCION, null, new { @class = "red" })
+            @Html.LabelFor(d => d.CORREO)
+            @Html.TextBoxFor(d => d.CORREO, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.CORREO, null, new { @class = "red" })
+            @Html.LabelFor(d => d.TELEFONO)
+            @Html.TextBoxFor(d => d.TELEFONO, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.TELEFONO, null, new { @class = "red" })
+            @Html.LabelFor(d => d.SEXO)
+            @Html.DropDownListFor(d => d.SEXO, new List<SelectListItem>() { new SelectListItem() {
+                   Text = "Masculino", Value="M"}, new SelectListItem() { Text="Femenino", Value="F"} }, "Select", new { @id = "SelectBox" })
+            @Html.ValidationMessageFor(d => d.SEXO, null, new { @class = "red" })
+            <br />
+            @Html.LabelFor(d => d.NUMCOLEGIATURA)
+            @Html.TextBoxFor(d => d.NUMCOLEGIATURA, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.NUMCOLEGIATURA, null, new { @class = "red" })
+            <br />
+            @Html.LabelFor(d => d.FECHANACIMIENTO)
+            @Html.EditorFor(d => d.FECHANACIMIENTO, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.FECHANACIMIENTO, null, new { @class = "red" })
+            <br />
+            <hr />
+            <h3> Datos del usuario medico </h3>
+
+            <br />
+            @Html.LabelFor(d => d.USERNAME)
+            @Html.TextBoxFor(d => d.USERNAME, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.USERNAME, null, new { @class = "red" })
+            <br />
+            @Html.LabelFor(d => d.PASSWORD)
+            @Html.TextBoxFor(d => d.PASSWORD, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(d => d.PASSWORD, null, new { @class = "red" })
+            <br />
+
+            @Html.LabelFor(d => d.ACTIVO)
+            @Html.DropDownListFor(d => d.ACTIVO, new List<SelectListItem>() { new SelectListItem() {
+                    Text = "Activo", Value="True"}, new SelectListItem() { Text="Inactivo", Value="False"} }, "Select", new { @id = "SelectBox" })
+            @Html.ValidationMessageFor(d => d.ACTIVO, null, new { @class = "red" })
+
+            <br />
+            <br />
+
+            <div>
+                <input value="Guardar" class="btn btn-primary" type="submit" />
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+}
+    
